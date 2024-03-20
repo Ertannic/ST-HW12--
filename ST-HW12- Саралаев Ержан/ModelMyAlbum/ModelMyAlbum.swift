@@ -1,0 +1,14 @@
+//
+//  modelMyAlbum.swift
+//  ST-HW12- Саралаев Ержан
+//
+//  Created by Ertannic Saralay on 20.03.2024.
+//
+
+import Foundation
+
+struct Model {
+    static var images: [String] = [
+    "bo1", "bo2", "bo3", "bo4", "bo5", "bo6", "bo7", "bo8", "bo9", "bo10", "bo11", "bo12", "bo13", "bo14", "bo15", "bo16", "bo17"
+    ]
+}
