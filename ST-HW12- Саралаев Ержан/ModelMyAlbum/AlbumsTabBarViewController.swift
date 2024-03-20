@@ -10,14 +10,24 @@ import UIKit
 class AlbumsTabBarViewController: UIViewController {
    
     // MARK: - Outlets
+    
+    let myAlbums = [
+        
+        ["Недавние", "Тренировки", "Коротыш", "WhatsApp","Snapchat","CapCut", "Избранные", "Педро","Instagram","Pinterest", "Prequerl", "Instagram"],
+        
+        ["1", "2", "32", "12", "15", "13", "1", "12", "12", "2", "32", "12", "15", "13", "1", "2", "32"]
+                    
+    ]
+    
+    
 
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(MyAlbumsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyAlbumsHeader.identifier)
+        collectionView.register(MyAlbums.self, forCellWithReuseIdentifier: MyAlbums.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(CompositionalCell.self, forCellWithReuseIdentifier: CompositionalCell.identifier)
         return collectionView
     }()
     
@@ -60,17 +70,17 @@ class AlbumsTabBarViewController: UIViewController {
                                                        heightDimension: .fractionalHeight(1.3 / 2.7))
                 
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [layoutItem])
-                layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 2.5, bottom: 0, trailing: 2.5)
+                layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2.5, bottom: 50, trailing: 2.5)
                 
                 layoutGroup.interItemSpacing = NSCollectionLayoutSpacing.fixed(40)
             
                 
                 let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+                layoutSection.contentInsets = NSDirectionalEdgeInsets(top: -40, leading: 10, bottom: 0, trailing: 10)
                 layoutSection.orthogonalScrollingBehavior = .groupPaging
                 
                 let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93),
-                                                                     heightDimension: .estimated(80))
+                                                                     heightDimension: .absolute(80))
                 let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: layoutSectionHeaderSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
@@ -147,7 +157,7 @@ extension AlbumsTabBarViewController: UICollectionViewDataSource, UICollectionVi
         
         switch section {
         case 0:
-            return 12
+            return Model.images.count
         case 1:
             return 4
         case 2:
@@ -156,25 +166,27 @@ extension AlbumsTabBarViewController: UICollectionViewDataSource, UICollectionVi
             return 4
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         
         switch indexPath.section {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompositionalCell.identifier, for: indexPath)
-            cell.backgroundColor = .systemGreen
-            return cell
+            let myAlbumCell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbums.identifier, for: indexPath) as! MyAlbums
+            let imageName = Model.images[indexPath.item]
+            myAlbumCell.image.image = UIImage(named: imageName)
+            myAlbumCell.titleLabel.text = myAlbums[0][indexPath.item]
+            return myAlbumCell
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompositionalCell.identifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbums.identifier, for: indexPath)
             cell.backgroundColor = .systemGreen
             return cell
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompositionalCell.identifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbums.identifier, for: indexPath)
             cell.backgroundColor = .systemBlue
             return cell
             
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompositionalCell.identifier, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbums.identifier, for: indexPath)
             cell.backgroundColor = .systemRed
             return cell
         }
