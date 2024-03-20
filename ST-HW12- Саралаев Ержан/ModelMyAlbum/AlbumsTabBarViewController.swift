@@ -11,13 +11,10 @@ class AlbumsTabBarViewController: UIViewController {
    
     // MARK: - Outlets
     
-    let myAlbums = [
+    let myAlbums = ["Недавние", "Тренировки", "Коротыш", "WhatsApp","Snapchat","CapCut", "Избранные", "Педро","Instagram","Pinterest", "Prequerl", "Instagram"]
         
-        ["Недавние", "Тренировки", "Коротыш", "WhatsApp","Snapchat","CapCut", "Избранные", "Педро","Instagram","Pinterest", "Prequerl", "Instagram"],
-        
-        ["1", "2", "32", "12", "15", "13", "1", "12", "12", "2", "32", "12", "15", "13", "1", "2", "32"]
                     
-    ]
+
     
     
 
@@ -67,7 +64,7 @@ class AlbumsTabBarViewController: UIViewController {
                 layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.2 / 2.6),
-                                                       heightDimension: .fractionalHeight(1.3 / 2.7))
+                                                       heightDimension: .fractionalHeight(1.3 / 2))
                 
                 let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [layoutItem])
                 layoutGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2.5, bottom: 50, trailing: 2.5)
@@ -174,7 +171,7 @@ extension AlbumsTabBarViewController: UICollectionViewDataSource, UICollectionVi
             let myAlbumCell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbums.identifier, for: indexPath) as! MyAlbums
             let imageName = Model.images[indexPath.item]
             myAlbumCell.image.image = UIImage(named: imageName)
-            myAlbumCell.titleLabel.text = myAlbums[0][indexPath.item]
+            myAlbumCell.titleLabel.text = myAlbums[indexPath.item]
             return myAlbumCell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAlbums.identifier, for: indexPath)
@@ -203,7 +200,7 @@ extension AlbumsTabBarViewController: UICollectionViewDataSource, UICollectionVi
                 header.title.text = "Top Sales"
                 return header
             case 2:
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) // Ваш идентификатор заголовка для секции 2
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) 
                 return header
             default:
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MyAlbumsHeader.identifier, for: indexPath) as! MyAlbumsHeader

@@ -50,16 +50,16 @@ class MyAlbumsHeader: UICollectionReusableView {
     private func setupConstraints() {
         
         lineView.snp.makeConstraints { make in
-            make.top.equalToSuperview() // Привязываем верхнюю границу к верху родительского представления
-            make.leading.equalToSuperview() // Привязываем левую границу к левой границе родительского представления
-            make.trailing.equalToSuperview().inset(-80) // Привязываем правую границу с отступом в 20 пунктов от правой границы
-            make.height.equalTo(0.7) // Задаем фиксированную высоту линии
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview().inset(-80)
+            make.height.equalTo(0.7)
         }
         
         title.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom).offset(8) // Отступ от нижней границы lineView
-            make.leading.equalToSuperview() // Привязываем левую границу к левой границе родительского представления
-            make.trailing.lessThanOrEqualToSuperview() // title может быть шире или равен родительскому представлению, но не превышать его
+            make.top.equalTo(lineView.snp.bottom).offset(8)
+            make.leading.equalToSuperview()
+            make.trailing.lessThanOrEqualToSuperview() 
         }
     }
     override func prepareForReuse() {
