@@ -18,40 +18,47 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     func setupTabBarController() {
         tabBar.tintColor = .systemBlue
-        tabBar.backgroundColor = .systemGray3
     }
     
     func setupTabBarViewControllers() {
         
         // MediaLibary TABBAR
         let mediaLibrary = MediaLibaryTabBarViewController()
-        let mediaLibraryIcon = UITabBarItem(title: "mediaLibraryIcon",
+        mediaLibrary.title = "Медиатека"
+        let mediaLibraryIcon = UITabBarItem(title: "Медиатека",
                                             image: UIImage(systemName: "photo.fill.on.rectangle.fill"),
                                             selectedImage: UIImage(systemName: "photo.fill.on.rectangle.fill"))
         mediaLibrary.tabBarItem = mediaLibraryIcon
         
         // ForYou TABBAR
         let forYou = ForYouTabBarViewController()
-        let forYouIcon = UITabBarItem(title: "forYouIcon",
+        forYou.title = "Для Вас"
+        let forYouIcon = UITabBarItem(title: "Для Вас",
                                       image: UIImage(systemName: "heart.text.square.fill"),
                                       selectedImage: UIImage(systemName: "heart.text.square.fill"))
         forYou.tabBarItem = forYouIcon
         
         // Albums TABBAR
         let albums = AlbumsTabBarViewController()
-        let albumsIcon = UITabBarItem(title: "albumsIcon",
+        albums.title = "Альбомы"
+        let albumsIcon = UITabBarItem(title: "Альбомы",
                                       image: UIImage(systemName: "person.crop.rectangle.stack.fill"),
                                       selectedImage: UIImage(systemName: "person.crop.rectangle.stack.fill"))
         albums.tabBarItem = albumsIcon
+        let nav3 = UINavigationController(rootViewController: albums)
+  
+
+
         
         // Search TABBAR
         let search = SearchTabBarViewController()
-        let searchIcon = UITabBarItem(title: "search", 
+        search.title = "Поиск"
+        let searchIcon = UITabBarItem(title: "Поиск",
                                       image: UIImage(systemName: "magnifyingglass"),
                                       selectedImage: UIImage(systemName: "magnifyingglass"))
         search.tabBarItem = searchIcon
         
-        let controllers = [albums, forYou, mediaLibrary, search]
+        let controllers = [mediaLibrary, forYou, nav3, search]
         self.setViewControllers(controllers, animated: true)
         
     }

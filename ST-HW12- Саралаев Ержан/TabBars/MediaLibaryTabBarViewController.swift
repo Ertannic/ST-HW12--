@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class MediaLibaryTabBarViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
